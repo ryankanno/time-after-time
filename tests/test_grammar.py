@@ -10,13 +10,13 @@ import unittest
 class TestGrammar(unittest.TestCase):
 
     def test_relative_time(self):
-        days = """\
+        relative_times = """\
             1y
             1 y
             1 year
             2 years
-            1mon
-            1 mon
+            1m
+            1 m
             1 month
             2 months
             1d
@@ -35,8 +35,8 @@ class TestGrammar(unittest.TestCase):
             1 s
             1 second
             2 seconds""".splitlines()
-        for day in days:
-            time_expression.parseString(day)
+        for relative_time in relative_times:
+            time_expression.parseString(relative_time)
 
     def test_specific_time(self):
         times = """\
@@ -72,15 +72,11 @@ class TestGrammar(unittest.TestCase):
             time_expression.parseString(day)
 
     @raises(ParseException)
-    def test_invalid_grammar(self):
-        days = """\
-            Monda
-            Mond
-            TueTue
-            Tues
-            Tuesd
-            Tuesda""".splitlines()
-        for day in days:
-            time_expression.parseString(day)
+    def test_invalid_grammar_almost_complete(self):
+        time_expression.parseString("Monda")
+
+    @raises(ParseException)
+    def test_invalid_grammar_repeating(self):
+        time_expression.parseString("TueTue")
 
 # vim: filetype=python
