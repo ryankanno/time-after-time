@@ -1,0 +1,8 @@
+[run]
+
+omit =
+    */python?.?/*
+    */site-packages/nose/*
+    */site-packages/dateutil/*
+    */site-packages/pyparsing.py
+    */tests/*
