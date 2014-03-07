@@ -12,10 +12,15 @@ def calculate_time_offset(s, loc, toks):
 
 
 def calculate_time(s, loc, toks):
-    point_in_time = toks.point_in_time or datetime.datetime.now()
+    if toks.twelve_hour_clock:
+        print toks.twelve_hour_clock
+    elif toks.military_time:
+        print toks.military_time
+    else:
+        point_in_time = toks.point_in_time or datetime.datetime.now()
 
-    if toks.relative_time_offset_args:
-        point_in_time += relativedelta(**(toks.relative_time_offset_args))
+        if toks.relative_time_offset_args:
+            point_in_time += relativedelta(**(toks.relative_time_offset_args))
     toks["time"] = point_in_time
 
 
