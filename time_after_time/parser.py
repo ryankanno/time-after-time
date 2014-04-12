@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 
 
-from calculator import TwelveHourTimeCalculator
-from calculator import MilitaryTimeCalculator
+from .calculator import TwelveHourTimeCalculator
+from .calculator import MilitaryTimeCalculator
 import datetime
 from dateutil.relativedelta import relativedelta
-from utilities import create_relative_delta_args_from_tokens
+from .utilities import create_relative_delta_args_from_tokens
 
 
 def calculate_time_offset(s, loc, toks):

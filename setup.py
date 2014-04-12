@@ -10,8 +10,7 @@ setup(name='time-after-time',
       description='A tiny library to parse out various time grammars',
       author='Ryan Kanno',
       author_email='ryankanno@localkinegrinds.com',
-      packages=find_packages('time_after_time', exclude=['tests']),
-      long_description=open('README.md').read(),
+      packages=find_packages(),
       url="https://github.com/ryankanno/time-after-time")
 
 # vim: filetype=python

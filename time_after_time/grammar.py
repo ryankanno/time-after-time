@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import calendar
-from parser import calculate_time
-from parser import calculate_time_offset
-from parser import inject_point_of_time
-from parser import parse_int
+from .parser import calculate_time
+from .parser import calculate_time_offset
+from .parser import inject_point_of_time
+from .parser import parse_int
 from pyparsing import CaselessLiteral
 from pyparsing import nums
 from pyparsing import oneOf
@@ -13,7 +13,7 @@ from pyparsing import Optional
 from pyparsing import StringEnd
 from pyparsing import Suppress
 from pyparsing import Word
-from utilities import create_plural_tokens
+from .utilities import create_plural_tokens
 
 
 # tokens
