@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import datetime
+
 
 class TimeCalculator(object):
     def __init__(self, tokens):
@@ -13,7 +15,9 @@ class MilitaryTimeCalculator(TimeCalculator):
 
     def calculate(self):
         if 'military_time' in self.tokens:
-            pass
+            military_time = self.tokens.military_time
+            return datetime.time(hour=int(military_time[0:2]),
+                                 minute=int(military_time[2:4]))
 
 
 class TwelveHourTimeCalculator(TimeCalculator):
