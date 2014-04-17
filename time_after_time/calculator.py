@@ -25,7 +25,13 @@ class TwelveHourTimeCalculator(TimeCalculator):
         super(TwelveHourTimeCalculator, self).__init__(tokens)
 
     def calculate(self):
+        hours, minutes = 0, 0
         if 'twelve_hour_clock_time' in self.tokens:
-            pass
+            if 'hours' in self.tokens:
+                hours = self.tokens.hour
+            if 'minutes' in self.tokens:
+                minutes = self.tokens.minutes
+            time = datetime.time(hour=hours, minute=minutes)
+            return time
 
 # vim: filetype=python

@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 
-from .calculator import TwelveHourTimeCalculator
 from .calculator import MilitaryTimeCalculator
+from .calculator import TwelveHourTimeCalculator
 import datetime
 from dateutil.relativedelta import relativedelta
 from .utilities import create_relative_delta_args_from_tokens
@@ -15,7 +15,7 @@ def calculate_time_offset(s, loc, toks):
 
 
 def calculate_time(s, loc, toks):
-    if toks.twelve_hour_clock:
+    if toks.twelve_hour_clock_time:
         calc = TwelveHourTimeCalculator(toks)
         time = calc.calculate()
     elif toks.military_time:
