@@ -13,3 +13,9 @@ At a minimum, supporting the following: (this list will grow)
   - in 2 hours[months,weeks,days,minutes,seconds]
   - next monday[mon]
   - tomorrow
+
+TODO
+====
+
+  * Currently, supports only a time, needs to return the notion of a point in
+    time (ie a timestamp).
