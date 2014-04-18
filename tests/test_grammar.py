@@ -9,7 +9,7 @@ import unittest
 
 class TestGrammar(unittest.TestCase):
 
-    def test_relative_time(self):
+    def test_relative_time_wrt_now(self):
         relative_times = """\
             1y
             1 y
