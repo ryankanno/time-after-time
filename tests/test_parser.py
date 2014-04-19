@@ -12,7 +12,7 @@ EPOCH_DT = datetime.datetime.utcfromtimestamp(0)
 
 class TestParser(unittest.TestCase):
 
-    def test_relative_time_years(self):
+    def test_single_relative_time_years(self):
         years_1 = """\
             test 1y
             test 1 y
@@ -21,4 +21,10 @@ class TestParser(unittest.TestCase):
             parsed_time = time_expression.parseString(year_1).time
             ok_(parsed_time == (EPOCH_DT + relativedelta(years=1)))
 
+    def test_multi_relative_time_years(self):
+        years_1 = """\
+            test 1y2m""".splitlines()
+        for year_1 in years_1:
+            parsed_time = time_expression.parseString(year_1).time
+            ok_(parsed_time == (EPOCH_DT + relativedelta(years=1, months=2)))
 # vim: filetype=python

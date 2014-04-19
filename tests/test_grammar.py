@@ -9,7 +9,7 @@ import unittest
 
 class TestGrammar(unittest.TestCase):
 
-    def test_relative_time_wrt_now(self):
+    def test_single_relative_time_wrt_now(self):
         relative_times = """\
             1y
             1 y
@@ -19,6 +19,10 @@ class TestGrammar(unittest.TestCase):
             1 m
             1 month
             2 months
+            1w
+            1 w
+            1 week
+            2 weeks
             1d
             1 d
             1 day
@@ -35,6 +39,13 @@ class TestGrammar(unittest.TestCase):
             1 s
             1 second
             2 seconds""".splitlines()
+        for relative_time in relative_times:
+            time_expression.parseString(relative_time)
+
+    def test_multi_relative_time_wrt_now(self):
+        relative_times = """\
+            1y1m1d1h1min1s
+            1year1m1d1h1min1s""".splitlines()
         for relative_time in relative_times:
             time_expression.parseString(relative_time)
 

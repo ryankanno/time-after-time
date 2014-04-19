@@ -7,6 +7,7 @@ from .parser import calculate_time_offset
 from .parser import inject_point_of_time
 from .parser import parse_int
 from pyparsing import CaselessLiteral
+from pyparsing import Forward
 from pyparsing import nums
 from pyparsing import oneOf
 from pyparsing import Optional
@@ -39,9 +40,13 @@ TIME_DIGIT = Word(nums, min=1, max=2).setParseAction(parse_int)
 INT = Word(nums).setParseAction(parse_int)
 
 # relative to now
-rel_daytime_spec = Optional(TEST("test")) + INT("quantity") \
-    + TIME_UNIT("time_units")
-rel_daytime_spec.setParseAction(calculate_time_offset, calculate_time)
+rel_daytime_spec = INT("quantity") + TIME_UNIT("time_units")
+rel_daytime_specs = Forward()
+rel_daytime_specs << rel_daytime_spec + Optional(rel_daytime_specs)
+
+rel_daytime_spec_with_test = Optional(TEST("test")) + rel_daytime_specs
+rel_daytime_spec_with_test.setParseAction(calculate_time_offset,
+                                          calculate_time)
 
 # specific day
 day_spec = DAYS_OF_WEEK("day") | ABBR_DAYS_OF_WEEK("day")
@@ -64,7 +69,7 @@ abs_daytime_spec = (Optional(day_spec("specific_day")) +
 
 # expression
 time_expression = \
-    (rel_daytime_spec("relative_daytime") | abs_daytime_spec) + \
+    (rel_daytime_spec_with_test("relative_daytime") | abs_daytime_spec) + \
     StringEnd()
 
 # vim: filetype=python
