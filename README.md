@@ -13,7 +13,7 @@ At a minimum, *should* support the following: (this list will grow)
 
   - Relative time with respect to now
     - <del>1 h[m,w,d,min,s]</del>
-    - 3w2d30s
+    - <del>3w2d30s</del>
   - Specific day/time from now
     - monday[mon]
     - monday!12.15pm
@@ -24,3 +24,4 @@ TODO
 
   * Currently, supports only a time, needs to return the notion of a point in
     time (ie a timestamp).
+  * Write out BNF

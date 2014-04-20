@@ -22,9 +22,10 @@ class TestParser(unittest.TestCase):
             ok_(parsed_time == (EPOCH_DT + relativedelta(years=1)))
 
     def test_multi_relative_time_years(self):
-        years_1 = """\
-            test 1y2m""".splitlines()
-        for year_1 in years_1:
-            parsed_time = time_expression.parseString(year_1).time
-            ok_(parsed_time == (EPOCH_DT + relativedelta(years=1, months=2)))
+        parsed_time = time_expression.parseString("test 1y2m").time
+        ok_(parsed_time == (EPOCH_DT + relativedelta(years=1, months=2)))
+
+        parsed_time = time_expression.parseString("test 10y2m3w1d23h4min").time
+        ok_(parsed_time == (EPOCH_DT + relativedelta(years=10, months=2,
+            weeks=3, days=1, hours=23, minutes=4)))
 # vim: filetype=python
