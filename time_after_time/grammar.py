@@ -21,8 +21,8 @@ from .utilities import create_plural_tokens
 # tokens
 CL = CaselessLiteral
 
-DAYS_OF_WEEK = oneOf(list(calendar.day_name))
-ABBR_DAYS_OF_WEEK = oneOf(list(calendar.day_abbr))
+DAYS_OF_WEEK = oneOf(list(calendar.day_name), caseless=True)
+ABBR_DAYS_OF_WEEK = oneOf(list(calendar.day_abbr), caseless=True)
 
 AM, PM = CL("am"), CL("pm")
 AT, AT_SYM = CL("at"), CL("!")
@@ -65,8 +65,10 @@ military_time_spec.setParseAction(calculate_time)
 
 time_spec = (twelve_hour_clock_time_spec("twelve_hour_clock_time") |
              military_time_spec("military_time"))
-abs_daytime_spec = (Optional(day_spec("specific_day")) +
-                    time_spec("specific_time"))
+
+abs_daytime_spec = (day_spec("specific_day") |
+                   (Optional(day_spec("specific_day") + (AT | AT_SYM)) +
+                    time_spec("specific_time")))
 
 # expression
 time_expression = (rel_daytime_spec | abs_daytime_spec) + StringEnd()

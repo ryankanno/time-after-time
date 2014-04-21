@@ -68,6 +68,25 @@ class TestGrammar(unittest.TestCase):
         for time in times:
             time_expression.parseString(time)
 
+    def test_day(self):
+        times = """\
+            mon
+            monday
+            tue
+            tuesday
+            wed
+            wednesday
+            thu
+            thursday
+            fri
+            friday
+            sat
+            saturday
+            sun
+            sunday""".splitlines()
+        for time in times:
+            time_expression.parseString(time)
+
     @raises(ParseException)
     def test_invalid_grammar_almost_complete(self):
         time_expression.parseString("Monda")
