@@ -51,10 +51,10 @@ class TestGrammar(unittest.TestCase):
 
     def test_specific_twelve_hour_clock_time(self):
         times = """\
-            12:12 am
-            23:10 pm
+            12.12 am
+            23.10 pm
             12 pm
-            12:15 am""".splitlines()
+            12.15 am""".splitlines()
         for time in times:
             time_expression.parseString(time)
 

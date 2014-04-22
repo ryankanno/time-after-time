@@ -20,7 +20,7 @@ class TestMilitaryCalculator(unittest.TestCase):
 class TestTwelveHourTimeCalculator(unittest.TestCase):
 
     def test_specific_twelve_hour_time(self):
-        parsed_time = time_expression.parseString("12:15 AM")
+        parsed_time = time_expression.parseString("12.15 AM")
         ok_(parsed_time["time"] == datetime.time(hour=0, minute=15))
 
 # vim: filetype=python

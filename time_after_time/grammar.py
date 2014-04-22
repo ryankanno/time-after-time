@@ -26,7 +26,7 @@ ABBR_DAYS_OF_WEEK = oneOf(list(calendar.day_abbr), caseless=True)
 
 AM, PM = CL("am"), CL("pm")
 AT, AT_SYM = CL("at"), CL("!")
-COLON = Suppress(':')
+COLON = (Suppress(':') | Suppress('.'))
 TEST = CL("test").setParseAction(inject_point_of_time)
 
 YEAR, MONTH, WEEK, DAY = create_plural_tokens("year month week day".split())
