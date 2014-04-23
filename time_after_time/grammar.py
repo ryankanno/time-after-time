@@ -66,7 +66,7 @@ military_time_spec.setParseAction(calculate_time)
 time_spec = (twelve_hour_clock_time_spec("twelve_hour_clock_time") |
              military_time_spec("military_time"))
 
-abs_daytime_spec = (day_spec("specific_day") |
+abs_daytime_spec = (day_spec("specific_day") ^
                    (Optional(day_spec("specific_day") + (AT | AT_SYM)) +
                     time_spec("specific_time")))
 
