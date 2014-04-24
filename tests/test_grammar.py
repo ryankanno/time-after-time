@@ -52,7 +52,7 @@ class TestGrammar(unittest.TestCase):
     def test_specific_twelve_hour_clock_time(self):
         times = """\
             12.12 am
-            23.10 pm
+            11.10 pm
             12 pm
             12.15 am""".splitlines()
         for time in times:
@@ -91,8 +91,8 @@ class TestGrammar(unittest.TestCase):
         times = """\
             mon at 12.10 pm
             monday at 12.10 am
-            tue ! 23.10 pm
-            tuesday at 23.10 PM
+            tue ! 11.10 pm
+            tuesday at 11.10 PM
             wed at 12 AM
             wednesday ! 12 PM
             thu at 12.15 AM
@@ -106,12 +106,35 @@ class TestGrammar(unittest.TestCase):
         for time in times:
             time_expression.parseString(time)
 
+    def test_day_with_military_time(self):
+        times = """\
+            mon at 2359
+            monday at 2359
+            tue ! 0100
+            tuesday at 0100
+            wed at 0213
+            wednesday ! 0213
+            thu at 1806
+            thursday ! 1806
+            fri at 0430
+            friday at 0430
+            sat ! 1003
+            saturday at 1003
+            sun at 0420
+            sunday ! 0420""".splitlines()
+        for time in times:
+            time_expression.parseString(time)
+
     @raises(ParseException)
-    def test_invalid_grammar_almost_complete(self):
+    def test_day_invalid_day_grammar_almost_complete(self):
         time_expression.parseString("Monda")
 
     @raises(ParseException)
-    def test_invalid_grammar_repeating(self):
+    def test_day_invalid_day_grammar_repeating(self):
         time_expression.parseString("TueTue")
+
+    @raises(ParseException)
+    def test_daytime_invalid_time_grammar(self):
+        time_expression.parseString("Tue ! 30001")
 
 # vim: filetype=python
