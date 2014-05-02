@@ -10,17 +10,29 @@ import unittest
 class TestMilitaryCalculator(unittest.TestCase):
 
     def test_specific_military_time(self):
+        expected_date = datetime.date.today()
+
         parsed_time = time_expression.parseString("2359")
-        ok_(parsed_time["time"] == datetime.time(hour=23, minute=59))
+        expected_time = datetime.time(hour=23, minute=59)
+        expected_datetime = datetime.datetime.combine(expected_date,
+                                                      expected_time)
+        ok_(parsed_time["time"] == expected_datetime)
 
         parsed_time = time_expression.parseString("0001")
-        ok_(parsed_time["time"] == datetime.time(hour=0, minute=1))
+        expected_time = datetime.time(hour=0, minute=1)
+        expected_datetime = datetime.datetime.combine(expected_date,
+                                                      expected_time)
+        ok_(parsed_time["time"] == expected_datetime)
 
 
 class TestTwelveHourTimeCalculator(unittest.TestCase):
 
     def test_specific_twelve_hour_time(self):
+        expected_date = datetime.date.today()
         parsed_time = time_expression.parseString("12.15 AM")
-        ok_(parsed_time["time"] == datetime.time(hour=0, minute=15))
+        expected_time = datetime.time(hour=0, minute=15)
+        expected_datetime = datetime.datetime.combine(expected_date,
+                                                      expected_time)
+        ok_(parsed_time["time"] == expected_datetime)
 
 # vim: filetype=python
