@@ -67,8 +67,8 @@ time_spec = (twelve_hour_clock_time_spec("twelve_hour_clock_time") |
              military_time_spec("military_time"))
 
 abs_daytime_spec = (day_spec("specific_day") ^
-                   (Optional(day_spec("specific_day") + (AT | AT_SYM)) +
-                    time_spec("specific_time")))
+                    (Optional(day_spec("specific_day") + (AT | AT_SYM))
+                     + time_spec("specific_time")))
 
 # expression
 time_expression = (rel_daytime_spec | abs_daytime_spec) + StringEnd()
