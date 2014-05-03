@@ -55,7 +55,7 @@ day_spec.setParseAction(calculate_time)
 
 # specific 12-hr time
 twelve_hour_clock_time_spec = TIME_DIGIT("hour") + \
-    Optional(COLON + TIME_DIGIT("minutes")) + \
+    Optional(COLON + TIME_DIGIT("minute")) + \
     (AM | PM)("am_pm")
 twelve_hour_clock_time_spec.setParseAction(calculate_time)
 

@@ -14,6 +14,9 @@ At a minimum, *should* support the following: (this list will grow)
   - Relative time with respect to now
     - <del>1 h[m,w,d,min,s]</del>
     - <del>3w2d30s</del>
+  - Specific time today
+    - <del>12.15 a[p]m</del>
+    - <del>2359</del>
   - Specific day/time from now
     - monday[mon]
     - monday!12.15pm

@@ -35,4 +35,17 @@ class TestTwelveHourTimeCalculator(unittest.TestCase):
                                                       expected_time)
         ok_(parsed_time["time"] == expected_datetime)
 
+        parsed_time = time_expression.parseString("4.20 pm")
+        expected_time = datetime.time(hour=16, minute=20)
+        expected_datetime = datetime.datetime.combine(expected_date,
+                                                      expected_time)
+        ok_(parsed_time["time"] == expected_datetime)
+
+        parsed_time = time_expression.parseString("12.58 PM")
+        expected_time = datetime.time(hour=12, minute=58)
+        expected_datetime = datetime.datetime.combine(expected_date,
+                                                      expected_time)
+        ok_(parsed_time["time"] == expected_datetime)
+
+
 # vim: filetype=python
