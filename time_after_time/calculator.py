@@ -49,10 +49,12 @@ class RelativeDateTimeCalculator(DateTimeCalculator):
         super(RelativeDateTimeCalculator, self).__init__(tokens)
 
     def _calculate_day(self):
-        return
+        """ Not used """
+        raise NotImplementedError
 
     def _calculate_time(self):
-        return
+        """ Not used """
+        raise NotImplementedError
 
     def calculate(self):
         time = self.tokens.absolute_point_in_time or datetime.datetime.now()
