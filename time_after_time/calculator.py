@@ -3,6 +3,7 @@
 
 import abc
 import datetime
+from dateutil.relativedelta import relativedelta
 
 
 class DateTimeCalculator(object):
@@ -11,13 +12,15 @@ class DateTimeCalculator(object):
     def __init__(self, tokens):
         self.tokens = tokens
 
+    @abc.abstractmethod
     def _calculate_day(self):
         return datetime.date.today()
 
     @abc.abstractmethod
     def _calculate_time(self):
-        return
+        raise NotImplementedError
 
+    @abc.abstractmethod
     def calculate(self):
         day = self._calculate_day()
         time = self._calculate_time()
@@ -28,11 +31,34 @@ class MilitaryDateTimeCalculator(DateTimeCalculator):
     def __init__(self, tokens):
         super(MilitaryDateTimeCalculator, self).__init__(tokens)
 
+    def _calculate_day(self):
+        return super(MilitaryDateTimeCalculator, self)._calculate_day()
+
     def _calculate_time(self):
         if 'military_time' in self.tokens:
             military_time = self.tokens.military_time
             return datetime.time(hour=int(military_time[0:2]),
                                  minute=int(military_time[2:4]))
+
+    def calculate(self):
+        return super(MilitaryDateTimeCalculator, self).calculate()
+
+
+class RelativeDateTimeCalculator(DateTimeCalculator):
+    def __init__(self, tokens):
+        super(RelativeDateTimeCalculator, self).__init__(tokens)
+
+    def _calculate_day(self):
+        return
+
+    def _calculate_time(self):
+        return
+
+    def calculate(self):
+        time = self.tokens.absolute_point_in_time or datetime.datetime.now()
+        if self.tokens.relative_time_offset_args:
+            time += relativedelta(**(self.tokens.relative_time_offset_args))
+        return time
 
 
 class TwelveHourDateTimeCalculator(DateTimeCalculator):
@@ -47,6 +73,9 @@ class TwelveHourDateTimeCalculator(DateTimeCalculator):
         return 'am_pm' in self.tokens and self.tokens.am_pm.lower() == 'am' \
             and hour == 12
 
+    def _calculate_day(self):
+        return super(TwelveHourDateTimeCalculator, self)._calculate_day()
+
     def _calculate_time(self):
         hour, minute = 0, 0
         if 'twelve_hour_clock_time' in self.tokens:
@@ -60,5 +89,8 @@ class TwelveHourDateTimeCalculator(DateTimeCalculator):
                 hour += 12
             time = datetime.time(hour=hour, minute=minute)
             return time
+
+    def calculate(self):
+        return super(TwelveHourDateTimeCalculator, self).calculate()
 
 # vim: filetype=python
