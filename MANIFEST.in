@@ -1,0 +1,10 @@
+include CHANGES
+include LICENSE
+include MANIFEST.in
+include README.rst
+include requirements.txt
+include setup.py
+recursive-include time_after_time *.py
+recursive-include tests *.py
+recursive-include docs *
+prune *.pyc
