@@ -12,14 +12,14 @@ describing the future.
 
 At a minimum, *should* support the following: (this list will grow) 
 
-(<del>means it is supported</del>)
+(&#10003; means it is supported)
 
   - Relative time with respect to now
-    - <del>1 h[m,w,d,min,s]</del>
-    - <del>3w2d30s</del>
+    - &#10003; 1 h[m,w,d,min,s]
+    - &#10003; 3w2d30s
   - Specific time today
-    - <del>12.15 a[p]m</del>
-    - <del>2359</del>
+    - &#10003; 12.15 a[p]m
+    - &#10003; 2359
   - Specific day/time from now
     - monday[mon]
     - monday!12.15pm
