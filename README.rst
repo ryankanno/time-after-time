@@ -1,8 +1,11 @@
 time-after-time
 ===============
 
-[![Build Status](https://travis-ci.org/ryankanno/time-after-time.png?branch=master)](https://travis-ci.org/ryankanno/time-after-time)
-[![Coverage Status](https://coveralls.io/repos/ryankanno/time-after-time/badge.png)](https://coveralls.io/r/ryankanno/time-after-time)
+.. image:: https://travis-ci.org/ryankanno/time-after-time.png?branch=master
+   :target: https://travis-ci.org/ryankanno/time-after-time
+
+.. image:: https://coveralls.io/repos/ryankanno/time-after-time/badge.png
+   :target: https://coveralls.io/r/ryankanno/time-after-time
 
 Tiny grammar is tiny. Tiny library to parse out various time grammars
 describing the future.
