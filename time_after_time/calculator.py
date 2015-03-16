@@ -4,6 +4,7 @@
 import abc
 import datetime
 from dateutil.relativedelta import relativedelta
+from py_utilities.time.date_utilities import next_day
 
 
 class DateTimeCalculator(object):
@@ -14,7 +15,13 @@ class DateTimeCalculator(object):
 
     @abc.abstractmethod
     def _calculate_day(self):
-        return datetime.date.today()
+        if 'day' in self.tokens:
+            day = next_day(
+                datetime.date.today(),
+                self._get_isoweekday_from_str())
+        else:
+            day = datetime.date.today()
+        return day
 
     @abc.abstractmethod
     def _calculate_time(self):
@@ -25,6 +32,9 @@ class DateTimeCalculator(object):
         day = self._calculate_day()
         time = self._calculate_time()
         return datetime.datetime.combine(day, time)
+
+    def _get_isoweekday_from_str(self, day_as_str):
+        return 1
 
 
 class MilitaryDateTimeCalculator(DateTimeCalculator):
